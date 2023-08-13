@@ -1,0 +1,280 @@
+/*
+COLOURS:
+turqueza => 05d9ff
+azul cielo => 009cde
+azul oscuro => 02648e
+blanco => fff
+-----------------
+STYLES GUIDE:
+0. RESET
+1. LAYOUT
+2. GENERIC ITEMS
+3. PARTS OF WEB
+4. LIST
+5. FORM
+6. ANIMATIONS
+7- MEDIAQUERY
+----------------
+*/
+
+/* ------------- 0. RESET -------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+* { box-sizing: border-box;}
+
+
+
+/* ------------- 1. LAYOUT width: auto-------------*/
+
+body {text-align: center;  }
+
+
+.header {display: flex; justify-content: center; align-items: center; background: url('images/fondonado.jpg') no-repeat center; background-size:cover; height: 400px;}
+
+.header img { width: 250px; height: 250px;}
+
+.navbar { background:#4494c2; color:#264658; height: 60px; padding-top: 20px; border-bottom: 1px dashed white}
+.navbar a {margin: 10px;}
+
+
+.wrapper .content .title {font: 50px 'Stint Ultra Condensed'; text-transform: uppercase; }
+.wrapper .content p {font: 400 20px 'Roboto Condensed';}
+
+
+
+/* -------------2. GENERIC ITEMS / 3. PARTS OF WEB -------------*/
+
+.who { display: flex; justify-content: center; align-items: center; background: #4494c2; height: 20rem; width: auto; padding: 45px;}
+.map { display: flex;justify-content: center;align-content: center;height: 100%; padding-top: 45px; }
+.map img { display: block; position: relative; justify-content: center; align-content: center; background-size:cover; width: auto; height: 100%; padding-bottom: 3rem;}
+.tratamientos {display: flex; position: relative; justify-content: center; align-items: center; padding: 45px;}
+
+.who .title {color:#a6c6d8;}
+.map .title { color:#4494c2;}
+.tarifas .btn {text-decoration: none; font: 400 20px 'Roboto Condensed';}
+.btn {display: inline-block; line-height: 50px; padding: 10px 20px; border:2px solid #fff}
+/* ------------- 3. PARTS OF WEB -------------*/
+
+.navbar a {color:#fff; font: 22px 'Stint Ultra Condensed'; text-transform: uppercase; text-decoration: none; }
+
+.tratamientos {background: #264658; color: #fff; }
+.tratamientos figcaption, .tratamientos .content p {font: 300 20px 'Roboto Condensed';}
+
+
+.tarifas {height: 450px; background: url(images/dummy-tarifas.jpg) no-repeat center top; background-size: cover; text-align: left; color:#fff; padding: 5%;}
+	.tarifas p {max-width: 40%;margin: 30px;}
+	.tarifas .btn {color:white}
+
+/* ------------- 4. LIST -------------*/
+
+.list-tratamientos {display: flex; justify-content: center; align-items: center; margin-top: 80px;}
+	.list-tratamientos li {padding: 0 40px 30px 40px;}
+	.list-tratamientos figure {position: relative; display: flex; justify-content: center; align-items: center; flex-flow: column; width: 100px; height: 100px;}
+	.list-tratamientos figure::after {content:""; position: absolute; left: 0; top: 0; z-index: 0; width: 100px; height: 100px; background: #fff; border-radius: 50%;}
+	.list-tratamientos img {position:relative; z-index: 1; width: 70%; height: 70%;}
+		.list-tratamientos figcaption {position:absolute; left:0; right:0; bottom: -40px;}
+
+/* ------------- 5. FORM -------------*/
+
+/* ------------- 5. ANIMATIONS -------------*/
+
+/*En este practico ejemplificaremos las propiedades de animaciones:
+TRANSFORM/TRANSLATE: Se utiliza para modificar/animar, realizando una translacion o corrimiento del elemento en x e y.
+
+TRANSITION: Se utiliza para hacer que la animacion o en este caso la translacion demorando el efecto en segundos. Generalmente va acompañado de alguna propiedad de transformacion para que realiza tal efecto en un lapso de tiempo determinado y elementos determinados. Esto seria asi; a modo ej:
+
+Si tenemos:			.header:hover img {transform: translate(0,-10px);} 
+
+-Pero le pasamos mas elementos CSS por ejemplo: height y background; quedando:
+
+					.header:hover img {transform: translate(0,-10px); heigth:150px; background: #fff;} 
+
+-A transition que tiene como paramentro 3 segundos (se puede poner tambien mili-segundos), ademas el valor "all" esta incluyendo a todos los elementos css de ese elemento principal. Pero tambien podriamos especifical a cual SI/NO realizar la transicion, ejemplo:
+
+					.header img {transition: .3s height background;}  o .header img {transition: .3s height;} o  .header img {transition: .3s transform;}
+
+-Cabe destacar que si transform tiene por ej 3 elementos y solo animamos 1 de ellos, ese tendra la transicion pero no asi los demas.
+*/
+
+.header img {transition: .3s all;}
+.header:hover img {transform: translate(0,-10px);}
+
+.navbar a {transition: .3s all;}
+.navbar a:hover {transform:translate(0,5px);}
+
+/* ------------------------------------------------------------------------------
+
+En este practico ejemplificaremos las propiedades de animaciones:
+TRANSFORM/SKEW: Se utiliza para que los elemento se transforme en figuras trapezoidales. Se puede usar skew(); o skewX; o skewY(); indicando si el corriemiento es en x o en y.
+Aclaracion: Este efecto modifica o distorciona cambiando de posicion el elemento pero tambien lo que contiene el elemento; que seria en este ejemplo la palabara "Contáctanos". Asique no abusar en caso de tener contenido.
+-Ademas podemos agregarle el efecto de delay con un TRANSITION.
+
+
+.btn {transition: .3s all;}
+.btn:hover {transform:skew(10deg);}
+
+
+Comento anterior para explicar otra propiedad tambien sobre el botón
+------------------------------------------------------------------------------ */
+
+.btn {transition: .3s all;}
+.btn:hover {transform:scale(1.10,1.10);}
+
+/* Propiedad TRANSFORM/SCALE: Se utiliza para agrandar (zoom) a algun elemento. Afecta tambien al contenido de el. Tiene como valor inicial (1,1) es decir que si ponemos ese valor no veremos cambios, si inicializamos con valores > 1 aplica zoom, pero si usamos < 1 aleja. Acepta decimales y es sencible. Ademas podemos agregarle el efecto de delay con un TRANSITION.
+
+------------------------------------------------------------------------------*/
+
+.list-tratamientos img {transition: 1s all;}
+.list-tratamientos img:hover{transform:rotate(360deg);}
+
+/* Propiedad TRANSFORM/SCALE: Se utiliza para rotar o girar un elemento, indicando los gradosº. Ademas podemos agregarle el efecto de delay con un TRANSITION.
+.who {perspective: 1000px;}
+	.who p {transform:rotateX(60deg);}
+------------------------------------------------------------------------------*/
+
+/*
+
+.who .content {perspective: 1000px;}
+	.who p {transform:rotateY(60deg)};
+
+Propiedad PERSPECTIVE se utiliza siempre de la mano con la propiedad TRANSFORM/ROTATE. Esta primera la inicializamos en el valor maximo de px que va a tener de perspectiva, pero si lo ponemos solo no realizara ningun cambio sino lo acompañamos del transform/rotate.
+Como explicamos, ahora TRANSFORM/ROTATE X O Y : Se utiliza para darle el frente/profundidad que tendra en X o Y, en X (simulara el texto del comienzo de la peli Star Wars).
+Puede adoptar valores negativos y hace el efecto inverso de frente/profundidad.
+Sino le damos en este paso la perspectiva y dejamos solo el rotate, solamente rotara pero no mostrara el efecto de profundidad.
+
+Comento esta propiedad ya que sino las animaciones mas adelante no funcionan porque el texto excede de tamaño o nose porque pero hace que no funcione la animacion ejemplificada atravez del .header que a continuacion ejemplifico.
+
+
+------------------------------------------------------------------------------*/
+/* AHORA VEREMOS LAS "ANIMACIONES" Y COMO SUSTITUIR A FLASH DENTRO DE CSS.
+
+
+
+
+
+
+
+*/
+
+.header
+{
+	animation: animacion-preview; /*Especificamos: Que animacion queremos*/
+	-webkit-animation: animacion-preview;;
+
+	animation-duration: .2s; /*Especificamos: Durante cuanto tiempo (segundos)*/
+	-webkit-animation-duration: 19s;;
+
+	animation-timing-function: linear; /*Especificamos: Modalidad en la que se va a ejecutar la animacion, linear es lineal constante. Pueden ser tambien: ease/ease-in/ease-out/ease-in-out */
+	-webkit-animation-timing-function: linear;
+
+	animation-delay:2s;  /*Especificamos: Cuantos segundos tiene que esperar hasta que arranque la animacion.*/
+	-webkit-animation-delay:2s;
+
+	animation-iteration-count: infinite;  /*Especificamos: De forma numerica cuantas "n" veces va a realizarse la animacion, o podemos especificar que ejecute siempre con "infinite".*/
+	-webkit-animation-iteration-count: infinite;
+
+	animation-direction: alternate;  /*Especificamos: En que dirección se va a ejecutar la animacion. */
+	-webkit-animation-direction: alternate;
+}
+
+/* Animation Keyframes
+
+Observación: Recomiendo la pagina https://www.w3schools.com/cssref/tryit.php?filename=trycss3_animation-timing-function2 donde especifica en la solapa Intentalo tu mismo como funciona. No solo esta funcion sino lo se busque.
+
+Ahora ademas de indicar el elemento y las propiedades de animacion debemos realizar el llamado @keyframes + el "animation-name" que apunta en este caso al ".header". Y que ejecuta mediante un comienzo (desde) osea "from" (hacia) "to". En este caso cambiara el width de auto a 1500px.
+
+Tambien podriamos especificar valor en %, de lo que queremos que aplique en cada instancia. Podemos poner varios valores segun necesitemos especificar en cada instancia.
+
+Le metemos compatibilidad con -webkit- pero en Chrome funciona sin esa definicion/repeticion por cada elemento.
+*/
+
+
+@keyframes animacion-preview 
+
+{
+	0% 
+	{
+		width: auto;
+	}
+	100% 
+	{
+		width: 3000px;
+	}
+	
+}
+
+@-webkit-keyframes animacion-preview 
+
+{
+	0% 
+	{
+		-webkit-width: auto;
+	}
+	100% 
+	{
+		-webkit-width: 3000px;
+	}
+	
+}
+
+
+
+/* ------------- 7. MEDIAQUERY (No aplica propiedades en el video)------------- */
+
+ @media screen and (max-width:768px)
+ {}
+
+
+ @media screen and (max-width: 600px)
+ {}
+
+
+ @media screen and (max-width: 540px)
+ {}
+
+
+
+
+

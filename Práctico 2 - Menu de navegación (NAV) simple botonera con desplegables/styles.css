@@ -1,0 +1,113 @@
+/*
+COLOURS:
+turqueza => 05d9ff
+azul cielo => 009cde
+azul oscuro => 02648e
+blanco => fff
+-----------------
+STYLES GUIDE:
+0. RESET
+1. NAVS
+2. MEDIAQUERY
+----------------
+*/
+
+/* ------------- 0. RESET -------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+* { box-sizing: border-box;}
+
+body { font:300 16px/1 'Roboto Condensed';}/*Le agrega el estilo de la fuente*/
+
+/* ------------- 1. NAVS -------------*/
+
+/*Aclaraciones: 
+-Sentencia display flex; acomoda los elementos de la caja de forma organizada.
+-Sentencia display block; acomoda los elementos de la caja de forma ordenada pero una debajo de otra, como una lista.
+-En .subnavbar a.active:after creamso la barrita indicando la opcion activada "active".
+-En .subnavbar ponemos displa: none; al ultimo recien, porque esto va a ocultar todas las otras opciones, que se mostraran una vez que pasemos el raton por el, mediante un :hover en el li de .navbar
+
+Aclaracion: SIEMPRE QUE USEMOS "POSITION: ABSOLUTE" debemos especificarle el WIDTH ej:100%, ya que sino corremos el riesgo de que asuma el tamaño del ELEMENTO QUE LO CONTIENE. Ej del ".subnavbar".
+
+
+*/
+
+.navbar { background: #009cde; margin-bottom: 30px;}
+	.navbar ul { display: flex; justify-content: space-between; height: 60px;}
+	.navbar li { position: relative; flex: 1; display: flex; justify-content: center; align-items: center; border-right: 1px solid #fff;}
+		.navbar a { position:relative; display: block; color: #fff; text-decoration: none; text-align: center; font-size: 20px;}
+		.navbar li.active::after{ content:""; position: absolute; bottom: 0; left:10%; height: 3px; width: 80%; background: #02648e ;}
+
+		.navbar li:hover .subnavbar { display: block}
+
+
+.subnavbar{ display: none; position: absolute; left: 0; top: 61px; width: 100%; background: #02648e;}
+	.subnavbar a { display: flex; justify-content: flex-end; align-items: center; height: 40px; padding-right: 10px; border-bottom: 1px solid #fff; font-size: 16px;}
+	.subnavbar .active:after { content:""; position: absolute; bottom: 0; right: 0; height: 100%; width: 3px; background:#009cde;}
+
+
+/* ------------- 2. MEDIAQUERY -------------*/
+/*Como la funcion HOVER (que es apsar el raton) en un movil, no funciona haremos dentro de nuestro mediaquery responsive para movil que ya no tenga la propiedad hover.
+
+En este video muestra para Ipad y Iphone 5 Plus. El donde el menu desplegable permanecera desplegado, dado que al no tener hover de raton no se vera de otro modo. A no ser que usemos ahorasi, el evneto onclick de Javascript para mostrarlo. */
+
+@media screen and (max-width:768px) /* Ipad*/
+{   .subnavbar { display: block;}
+	
+}
+
+@media screen and (max-width:600px)
+{}
+
+@media screen and (max-width:540px) /* Iphone 6*/
+{
+	.navbar a {font-size: 15px;}
+	.navbar li { position: static;}
+}
+
+@media screen and (max-width:360px) /* Iphone 5 o 4 */
+{
+	
+}

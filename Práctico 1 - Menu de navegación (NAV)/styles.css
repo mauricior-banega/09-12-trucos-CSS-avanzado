@@ -1,0 +1,140 @@
+/*
+COLOURS:
+turqueza => 05d9ff
+azul cielo => 009cde
+azul oscuro => 02648e
+blanco => fff
+-----------------
+STYLES GUIDE:
+0. RESET
+1. NAVS
+2. MEDIAQUERY
+----------------
+*/
+
+/* ------------- 0. RESET -------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+* { box-sizing: border-box;}
+
+/* ------------- 1. NAVS -------------*/
+
+/*Aclaraciones: 
+
+-Sentencia  border-right: 2px solid #fff; es el borde blanco que luego se hace mas largo y cubre todo el largo, cuando se activa el display flex ya que esta propiedad nos permite alinea tanto en vertical como horizontal.
+
+-Sentencia justify-content:space-between, calculara los espacios entre las cajas nav, y por ultimo con flex=1 le indicaremos que midan lo mismo cada caja.
+
+(3º) -En la parte de crear la barrita de "active" para la caja nav, osea indicar que esa esta activa ponemos un border-bottom: 5px solid #02648e; pero veremos que nos queda larga y con una punta diagonal y no nos da la forma que deseamos.
+ Entonces creamos una caja mediante tecnica sde css::after
+ 1- Agregamos :after y le pasamos que el largo/ancho y color; nos queda una linea recta pero que podremos mover.
+ 2-En .navbar a (padre) podremos la propiedad position: relative para que en el (hijo) podamos darle la propiedad position: absolute; y se coloque al medio.
+ 3-Luego le indicamos que se coloque lo mas debajo posible bottom: 0, y que de izq tenga un 10%, esto es para que tenga ese 10% + 80% de ancho y restante quede 10% de no color.
+
+ -Luego hay que crear la siguiente actividad, aplicaremos la misma clase navbar a todas las otras; pero veremos que aplicara el mismo estilo a todas y esta bien, lo que esta mal es que queda todo junto para ello ponemos un margin-bottom:30px; 
+
+ -Siguiente asignamos a cada actividad una clase que las distinta para dar estilos: type2/type3/type4.
+
+*/
+
+/*OPC DE MENU 1º*/
+
+.navbar { display: flex; justify-content:space-between; height: 60px; background: #009cde; margin-bottom: 30px;}
+    .navbar a { position: relative; flex:1; display: flex; justify-content: center; align-items: center; color: #fff; text-decoration: none; text-align: center; border-right: 2px solid #fff; font: 16px 'arial'; }
+
+	.navbar a.active::after /*(3º)*/
+	{ position: absolute; bottom: 0; left:10%; content:""; height: 5px; width: 80%; background:#02648e;}
+
+/*OPC DE MENU 2º*/
+/*-De acuerdo a lo aplicado a todas las clases, incluia ponerle la barrita en este caso al 2º de color celeste claro. Y fue hecho para todos los .navbar qu tengan elemento "a" y de clase "active", osea a TODOS se aplica y lo tienen. Ahora, mediante esa definicion "a.active::after" + type2; indicamos que se aplique una clase de estilo especifico (que sera el color celeste clarito). */
+
+.type2 {background:#02648e; }
+	.type2 a.active::after{background: #05d9ff;}
+
+
+	/*OPC DE MENU 3º*/
+/*-Como dijimos la barrita de los activ va en color celeste tambien, fondo blanco y color de letras azul oscuro. Y aplica la mismo aplicado de usar .type3 a.active::after para darle color a la barra llamando a la clase type3.
+
+La dificultad de este ejercicio es que lleva una barra en azul que todas las cajas tienen y la aplicamos mediante border-bottom, pero que se superpondra con la barrita ya creada en el after, para ello le daremos un nuevo valor de bottom, esta vez -5px para que se superponga, ya que si pongo 0 quedara superpuesta porque asi esta y con -5 se superpone ya que es el tamaño de alto de la barrita, logica.*/
+
+.type3 {background:#fff; border-bottom: 5px solid #02648e;}
+	.type3 a.active::after{background: #05d9ff; bottom: -5px;}	
+	.type3 a {color:#02648e;}
+
+
+
+/*OPC DE MENU 4º*/
+/*La complicacion en este practico es darme cuenta que no hay que quitar el borde, sino transformarlo. De border-buttom a cuadrado que luego modificaremos tamaño y posicion para quedar la ezquina superior derecha, como en la foto del practico.
+
+Le daremos cambio a la forma, indicando de de ancho/largo sea igual (sea cuadrado), y este al extremo derecho y arriba. Y reseteamos los valores de bottom y left en auto, (sin especificar ya que no los usaremos). 
+
+Ahora, luego de creado el cuadrado hay que girarlo, mediante transform: rotate(45deg);.Podremos ver que aun falta de colocar, por ello es que mediante la modificacion de top/rigth lo pondremos bien en el extremo de manera que al colocarle un overflow:hidden, quite todo lo que sobresalga de la caja nav y quede el tringulito en el extremo, tan como en el diseño.*/
+
+.type4 { background: transparent;}
+	.type4 a { background:#02648e;; border-right-width: 35px; overflow: hidden;}
+	.type4 a.active {background: #05d9ff; color: #02648e}
+	.type4 a.active::after {background: #02648e; height: 50px; width: 50px; top:-25px; right:-25px; bottom:auto; left: auto; transform: rotate(45deg); }
+
+
+/* ------------- 2. MEDIAQUERY -------------*/
+
+/*Podemos usar mas medidas para nuestro mediaquery responsiva, siempre y cuando sepamos cuales pantalla hace referencia. Ejemplificamos los dispositivos. */
+
+@media screen and (max-width:768px)
+{ .navbar a.active::after { width: 100%; left:0%}
+	.type4 a.active::after { width: 30px; left: auto; top: -35px;}
+}
+
+@media screen and (max-width:600px) /* Ipad*/
+{}
+
+@media screen and (max-width:540px) /* Iphone 6*/
+{}
+
+@media screen and (max-width:360px) /* Iphone 5 o 4 */
+{
+	.navbar {display: block; height: auto;}
+	.navbar a {display: flex; height: 40px; border-bottom: 2px solid #fff;}
+}
